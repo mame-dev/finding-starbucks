@@ -75,6 +75,11 @@ makeShopMakers = (initOptions) ->
         shop: shop
       )
       map_markers[shopid] = marker
+      google.maps.event.addListener(marker, 'click', (event)->
+        new google.maps.InfoWindow(
+          content: "#{shop.name}<br/>#{shop.address}"
+        ).open(marker.getMap(), marker)
+      )
 
 setActiveShop = (activeshopid) ->
   # jQuery.each map_markers, (shopid, marker) ->
@@ -201,10 +206,10 @@ jQuery(document).ready (->
       mapInitialize "maparea", initializeOption
       centerLatLng = new google.maps.LatLng(current_lat, current_lng)
       map.setCenter centerLatLng, 18
-      map.setOptions
-        navigationControl: false
-        navigationControlOptions: false
-        draggable: false
+      # map.setOptions
+      #   navigationControl: false
+      #   navigationControlOptions: false
+      #   draggable: false
 
       jQuery("#loader").hide()
       jQuery("#search_result").show()
