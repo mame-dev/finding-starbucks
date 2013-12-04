@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class IndexHelperTest < ActionView::TestCase
+class MainPagesHelperTest < ActionView::TestCase
 end
